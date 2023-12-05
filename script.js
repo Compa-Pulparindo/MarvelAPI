@@ -1,12 +1,15 @@
 const newAvengers = [];
 
+
 const select = document.getElementById("universe");
+
 
 //Eventos
 document.getElementById("search").addEventListener("click", async () => {
   displaycharacter();
   resetInput();
 });
+
 
 document.getElementById("new-team").addEventListener("click", () => {
   disableElements(false);
@@ -16,7 +19,6 @@ document.getElementById("new-team").addEventListener("click", () => {
 document.getElementById("clear-history").addEventListener("click", () => {
   clearHistoy();
 });
-
 
 //Funciones manipulan a los eventos y al dom
 function resetInput() {
@@ -45,6 +47,10 @@ function disableElements(status) {
 //Funcion que
 async function displaycharacter() {
   const characterName = document.getElementById("character").value;
+  if (!characterName) {
+    showAlert("Favor de ingresar un nombre de un personaje");
+    return;
+  }
   const character = await getCharacter(characterName);
   addCharacter(character);
   selectUniverse(character);
@@ -89,6 +95,7 @@ function addCharacter(character) {
   if (characterList.childElementCount >= 7) {
     document.getElementById("new-team").disabled = false;
     disableElements(true);
+    showAlert("!El equipo de los nuevos vengadores esta completo!");
   }
 }
 
@@ -135,3 +142,6 @@ function selectUniverse(character) {
   }
   characterList.appendChild(element);
 }
+
+
+
