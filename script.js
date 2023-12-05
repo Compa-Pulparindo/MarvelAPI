@@ -111,12 +111,13 @@ function addCharacter(character) {
       character.thumbnail.extension
     }">
                   </div>
-                    <p class="characDescription">${
-                      character.description || "No hay descripción"
-                    }</p>
+                    <p class="characDescription">${character.description || "No hay descripción"}</p>
                 </div>
                 `;
     charactersList.appendChild(characterElement);
+    newAvengers.sort((a, b) => {
+      return a.data.results[0].id - b.data.results[0].id;
+    });
   });
 }
 
