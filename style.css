@@ -26,6 +26,7 @@
       margin-top: 1rem;
       padding-left: 1rem;
       background-color: #a39687;
+      margin-right: 2rem;
     }
     .logo {
       width: 110px;
@@ -141,6 +142,7 @@
 .characterDescription {
   font-size: 1.5rem;
   align-self: center;
+  text-align: justify;
 }
 
 .universe-list {
