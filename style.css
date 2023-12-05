@@ -1,62 +1,104 @@
-.navbar-container {
-    top: 0%;
-    z-index: 100;
-    position: sticky;
-    padding: 0.4rem;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-bottom: 2px solid #127ec2;
-    .navbar-superior {
-        display: flex;
-        justify-content: space-between;
-        .logo {
-            width: 110px;
-            height: 60px;
-            margin-bottom: 10px;
-        }
-    }
-    .navbar-inferior {
-        display: flex;
-        justify-content: flex-start;
-        padding-left: 1rem;
-        padding-right: 1rem;
-        .button{
-            padding-right: 1rem;
-            padding-left: 1rem;
-            margin-right: 1rem;
-            height: 30px;
-            width: 110px;
-        }
-    }
+* {
+  background-color: rgb(158, 158, 158);
 }
 
-.imgTa{
-    width: 200px;
-    height: 200px;
+.navbar-container {
+  top: 0%;
+  z-index: 100;
+  position: sticky;
+  padding: 0.4rem;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-bottom: 2px solid #127ec2;
+  .navbar-superior {
+    display: flex;
+    justify-content: space-between;
+    .logo {
+      width: 110px;
+      height: 60px;
+      margin-bottom: 10px;
+    }
+  }
+  .navbar-inferior {
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    .button {
+      padding-right: 1rem;
+      padding-left: 1rem;
+      margin-right: 1rem;
+      height: 30px;
+      width: 110px;
+    }
+  }
 }
-.characDescription {
-    width: 200px;
+
+.imgTa {
+  width: 200px;
+  height: 200px;
 }
 
 .body-container {
-    display: flex;
-    margin: 1rem;
-    justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0.8rem;
 }
 
-.universe-container {
-    .universe-list {
-        width: 400px;
-        margin-top: 1rem;
-    }
+.history-character {
+  margin: 0.8rem;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.history-character{
-    margin: 2.5rem;
-    .img-history{
-        width: 200px;
-        height: 200px;
-    }
+.img-history {
+  width: 200px;
+  height: 200px;
+}
+
+.characterMarvel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 25px;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: rgb(189, 156, 133);
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgb(189, 156, 133);
+}
+
+.characterDescription {
+  font-size: 2rem;
+  align-self: center;
+}
+
+.history-character {
+  border: 2px solid black;
+}
+
+.universe-list {
+  font-size: 1.2rem;
+}
+
+.list-group {
+  border: 2px solid black;
+  background-color: rgb(189, 156, 133);
+  margin: 0.8rem;
+  border-radius: 15px;
+}
+
+.universe-container-list {
+  padding: 2px;
 }
