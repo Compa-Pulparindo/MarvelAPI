@@ -8,10 +8,10 @@ displaycharacter();
 resetInput();
 });
 
-document.getElementById("new-team").addEventListener("click", () => {
-disableElements(false);
-cleanTeam();
-});
+//document.getElementById("new-team").addEventListener("click", () => {
+//disableElements(false);
+//cleanTeam();
+//});
 
 document.getElementById("clear-history").addEventListener("click", () => {
 clearHistoy();
