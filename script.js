@@ -1,11 +1,23 @@
 const newAvengers = [];
 
-  const select = document.getElementById('universe');
+
+const select = document.getElementById("universe");
+
 
 //Eventos
 document.getElementById("search").addEventListener("click", async () => {
   displaycharacter();
   resetInput();
+});
+
+
+document.getElementById("new-team").addEventListener("click", () => {
+  disableElements(false);
+  cleanTeam();
+});
+
+document.getElementById("clear-history").addEventListener("click", () => {
+  clearHistoy();
 });
 
 //Funciones manipulan a los eventos y al dom
@@ -69,15 +81,15 @@ function addCharacter(character) {
   const element = document.createElement("div");
   //element.classList.add("col-4");
   element.innerHTML = `
-    <div>
-        <div>
-          <strong>Name: </strong> ${character.data.results[0].name}
-          <strong>Description: </strong> ${character.data.results[0].description}
-          <img src="${character.data.results[0].thumbnail.path}.jpg" width="150px" height="150px">
+  <div>
+      <div>
+        <strong>Name: </strong> ${character.data.results[0].name}
+        <strong>Description: </strong> ${character.data.results[0].description}
+        <img src="${character.data.results[0].thumbnail.path}.jpg" width="150px" height="150px">
 
-        </div>
-    <div>
-    `;
+      </div>
+  <div>
+  `;
 
   characterList.appendChild(element);
   if (characterList.childElementCount >= 7) {
@@ -87,26 +99,49 @@ function addCharacter(character) {
   }
 }
 
+//Funcion que muestra el historial
+function displayCharacterHistory() {
+  const CharacterHistoryContainer =
+    document.getElementById("history-container");
+  newAvengers.innerHTML = "";
+  newAvengers.forEach((character) => {
+    const element = document.createElement("div");
+    element.innerHTML = `
+          <div class="row align-items-center">
+              <div class="col">
+                <strong>Name: </strong> ${character.data.results[0].name}
+                <strong>ID: </strong> ${character.data.results[0].description}
+                <img src="${character.data.results[0].thumbnail.path}.jpg" width="150px" height="150px">
+              </div>
+          </div>          
+  `;
+    CharacterHistoryContainer.appendChild(element);
+  });
+}
+
 //Funcion que muestra las apariciones
 function selectUniverse(character) {
-    const characterList = document.getElementById("character-container");
+  const characterList = document.getElementById("character-container");
   const element = document.createElement("div");
-  if(select.value == "comics"){
-  element.innerHTML = `
-        <strong>Comics: </strong> ${character.data.results[0].comics.items[0].name}
-    `;
-  }else if(select.value == "events"){
+  if (select.value == "comics") {
     element.innerHTML = `
-        <strong>Events: </strong> ${character.data.results[0].events.items[0].name}
-    `;
-  }else if(select.value == "series"){
+      <strong>Comics: </strong> ${character.data.results[0].comics.items[0].name}
+  `;
+  } else if (select.value == "events") {
     element.innerHTML = `
-        <strong>Series: </strong> ${character.data.results[0].series.items[0].name}
-    `;
-  }else if(select.value == "stories"){
+      <strong>Events: </strong> ${character.data.results[0].events.items[0].name}
+  `;
+  } else if (select.value == "series") {
     element.innerHTML = `
-        <strong>Stories: </strong> ${character.data.results[0].stories.items[0].name}
-    `;
+      <strong>Series: </strong> ${character.data.results[0].series.items[0].name}
+  `;
+  } else if (select.value == "stories") {
+    element.innerHTML = `
+      <strong>Stories: </strong> ${character.data.results[0].stories.items[0].name}
+  `;
   }
   characterList.appendChild(element);
 }
+
+
+
