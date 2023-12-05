@@ -1,31 +1,31 @@
 const newAvengers = [];
 
-const select = document.getElementById("universe");
+const select = document.getElementById('universe');
 
 //Eventos
 document.getElementById("search").addEventListener("click", async () => {
-  displaycharacter();
-  resetInput();
+displaycharacter();
+resetInput();
 });
 
 document.getElementById("new-team").addEventListener("click", () => {
-  disableElements(false);
-  cleanTeam();
+disableElements(false);
+cleanTeam();
 });
 
 document.getElementById("clear-history").addEventListener("click", () => {
-  clearHistoy();
+clearHistoy();
 });
 
 //Funcion de mensaje
 function showAlert(message) {
-  document.getElementById("alert").innerHTML = "";
-  const Alert = document.getElementById("alert");
-  const element = document.createElement("div");
-  element.innerHTML = `
+document.getElementById("alert").innerHTML = "";
+const Alert = document.getElementById("alert");
+const element = document.createElement("div");
+element.innerHTML = `
       <h2>${message}</h2>
   `;
-  Alert.appendChild(element);
+Alert.appendChild(element);
 }
 
 //Funciones manipulan a los eventos y a componentes del DOM
@@ -54,14 +54,14 @@ function disableElements(status) {
 
 //Funcion que
 async function displaycharacter() {
-  const characterName = document.getElementById("character").value;
-  if (!characterName) {
-    showAlert("Favor de ingresar un nombre de un personaje");
-    return;
-  }
-  const character = await searchCharacters(characterName);
-  addCharacter(character);
-  selectUniverse(character);
+const characterName = document.getElementById("character").value;
+if (!characterName) {
+  showAlert("Favor de ingresar un nombre de un personaje");
+  return;
+}
+const character = await searchCharacters(characterName);
+addCharacter(character);
+selectUniverse(character);
 }
 
 //Función fetch
@@ -73,6 +73,7 @@ async function searchCharacters(characterName) {
     const apiUrl = `https://gateway.marvel.com:443/v1/public/characters?ts=1&apikey=${KEY}&hash=${HASH}${urlName}`;
 
     const data = await fetch(`${apiUrl}`);
+    //console.log(data);
 
     if (data.status === 404) {
       showAlert("No se ha encontrado su personaje");
@@ -140,18 +141,18 @@ function displayCharacterHistory() {
   });
 }
 
-function selectUniverse(character) {
-  const characterList = document.getElementById("universe-container");
-  const universe = document.getElementById("universe").value;
-  const element = document.createElement("div");
-  const selectedCharacter = character.data.results[0];
-  const selectedUniverse = selectedCharacter[universe].items;
-  selectedUniverse.forEach((items) => {
-    element.innerHTML += `
+  function selectUniverse(character) {
+    const characterList = document.getElementById("universe-container");
+    const universe = document.getElementById("universe").value;
+    const element = document.createElement("div");
+    const selectedCharacter = character.data.results[0];
+    const selectedUniverse = selectedCharacter[universe].items;
+    selectedUniverse.forEach((items) => {
+      element.innerHTML += `
       <div>
       <li class="universe-list">${universe}: ${items.name}</li>
       <div> 
         `;
-  });
-  characterList.appendChild(element);
-}
+    });
+    characterList.appendChild(element);
+  }
