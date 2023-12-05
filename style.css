@@ -69,12 +69,28 @@
 .imgTa {
   width: 200px;
   height: 200px;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.portada-marvel {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  width: 80%;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
 }
 
 .body-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin: 0.8rem;
+  background-color: rgb(173, 170, 166);
+  width: 100%;
+  height: 100%;
 }
 
 .history-character {
@@ -87,6 +103,9 @@
 .img-history {
   width: 200px;
   height: 200px;
+  border-radius: 50%;
+  border: 2px solid black;
+  margin-top: 1rem;
 }
 
 .characterMarvel {
@@ -94,10 +113,19 @@
   flex-direction: column;
   align-items: center;
   border: 2px solid black;
-  border-radius: 25px;
-  margin-bottom: 2rem;
+  border-radius: 15px;
+  margin: 0.8rem;
   padding: 1rem;
-  background-color: rgb(189, 156, 133);
+  background-color: rgb(196, 187, 181);
+}
+
+.alerta {
+  color: tomato;
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .col {
@@ -105,13 +133,13 @@
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  background-color: rgb(189, 156, 133);
+  background-color: rgb(196, 187, 181);
   border: 2px solid black;
-  border-radius: 25px;
+  border-radius: 15px;
 }
 
 .characterDescription {
-  font-size: 2rem;
+  font-size: 1.5rem;
   align-self: center;
 }
 
@@ -121,7 +149,7 @@
 
 .list-group {
   border: 2px solid black;
-  background-color: rgb(189, 156, 133);
+  background-color: rgb(196, 187, 181);
   margin: 0.8rem;
   border-radius: 15px;
 }

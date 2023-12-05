@@ -127,7 +127,7 @@ function displayCharacterHistory() {
     element.innerHTML = `
             <div class="history-character">
                 <div class="col">
-                  <strong>Name: ${character.data.results[0].name}</strong> 
+                  <strong>${character.data.results[0].name}</strong> 
                   <img class="img-history" src="${character.data.results[0].thumbnail.path}.jpg" width="150px" height="150px">
                 </div>
             </div>          
