@@ -1,5 +1,7 @@
 const newAvengers = [];
 
+  const select = document.getElementById('universe');
+
 //Eventos
 document.getElementById("search").addEventListener("click", async () => {
   displaycharacter();
@@ -83,4 +85,28 @@ function addCharacter(character) {
     disableElements(true);
     showAlert("!El equipo de los nuevos vengadores esta completo!");
   }
+}
+
+//Funcion que muestra las apariciones
+function selectUniverse(character) {
+    const characterList = document.getElementById("character-container");
+  const element = document.createElement("div");
+  if(select.value == "comics"){
+  element.innerHTML = `
+        <strong>Comics: </strong> ${character.data.results[0].comics.items[0].name}
+    `;
+  }else if(select.value == "events"){
+    element.innerHTML = `
+        <strong>Events: </strong> ${character.data.results[0].events.items[0].name}
+    `;
+  }else if(select.value == "series"){
+    element.innerHTML = `
+        <strong>Series: </strong> ${character.data.results[0].series.items[0].name}
+    `;
+  }else if(select.value == "stories"){
+    element.innerHTML = `
+        <strong>Stories: </strong> ${character.data.results[0].stories.items[0].name}
+    `;
+  }
+  characterList.appendChild(element);
 }
