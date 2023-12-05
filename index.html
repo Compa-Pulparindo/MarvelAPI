@@ -3,33 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Marvel</title>
+    <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
-    <h3 id="alert"></h3>
-    <input
+    <nav class="navbar-container">
+      <div class="navbar-superior">
+          <img class="logo" src="Marvel_Logo.svg.png" alt="logo">
+      <input
       type="text"
       id="character"
-      placeholder="Ingrese el nombre de su personaje" />
+      placeholder="Seacrh Character" />
+    </div>
+    <div class="navbar-inferior">
+      <select name="" id="universe">
+        <option value="elija">Elija</option>
+        <option value="comics">Comics</option>
+        <option value="events">Events</option>
+        <option value="series">Series</option>
+        <option value="stories">Stories</option>
+      </select>
+      <button class="button" type="button" id="show-history">Mostrar historial</button>
+      <button class="button" type="button" id="clear-history">Limpiar historial</button>
+      <button class="button" id="search">Buscar</button>
+    </div>
+    </nav>
+    <h3 id="alert"></h3>
 
-    <button id="search">Generar nuevo personaje</button>
-
-    <select name="" id="universe">
-      <option value="elija">Elija</option>
-      <option value="comics">Comics</option>
-      <option value="events">Events</option>
-      <option value="series">Series</option>
-      <option value="stories">Stories</option>
-    </select>
-
-    <button id="new-team" disabled>Volver a iniciar</button>
-    <button type="button" id="show-history">Mostrar historial</button>
-    <button type="button" id="clear-history">Limpiar hisotial</button>
-
-    <div id="character-container"></div>
-    <div id="history-container"></div>
-    <div id="universe-container"></div>
+    <div class="body-container">
+      <div id="character-container"></div>
+      <div id="universe-container"></div>
+      <div id="history-container"></div>
+    </div>
 
     <script src="./script.js"></script>
   </body>
