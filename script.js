@@ -1,42 +1,112 @@
-function random() {
-    const arrayID = [1011334, 1011175, 1011198, 1011031, 1011297];
-    let seleccionado = Math.floor(Math.random() * arrayID.length);
-    let rvalue = arrayID[seleccionado];
-    return rvalue;
+const newAvengers = [];
+
+  const select = document.getElementById('universe');
+
+//Eventos
+document.getElementById("search").addEventListener("click", async () => {
+  displaycharacter();
+  resetInput();
+});
+
+//Funciones manipulan a los eventos y al dom
+function resetInput() {
+  document.getElementById("character").value = "";
+}
+
+function cleanTeam() {
+  document.getElementById("character-container").innerHTML = "";
+  document.getElementById("alert").innerHTML = "";
+  document.getElementById("new-team").disabled = true;
+}
+
+function clearHistoy() {
+  document.getElementById("history-container").innerHTML = "";
+}
+
+document.getElementById("show-history").addEventListener("click", () => {
+  displayCharacterHistory();
+});
+
+function disableElements(status) {
+  document.getElementById("character").disabled = status;
+  document.getElementById("search").disabled = status;
+}
+
+//Funcion que
+async function displaycharacter() {
+  const characterName = document.getElementById("character").value;
+  if (!characterName) {
+    showAlert("Favor de ingresar un nombre de un personaje");
+    return;
   }
-  
-  document.getElementById("generateUser").addEventListener("click", async () => {
-    const datos = await getUser();
-    random();
-    addCharacterUI(datos);
-  });
-  
-  async function getUser() {
-    const HASH = "b2547d237696e7f1b7fc87cd1ae69e1d";
-    const KEY = "ecaefda9e411f8f3f161f30be7a17df6";
-    const API = `https://gateway.marvel.com:443/v1/public/characters/${random()}?ts=1&apikey=`;
-    try {
-      const data = await fetch(`${API}${KEY}&hash=${HASH}`);
-      return await data.json();
-    } catch (err) {
-      console.log("error: ", err);
+  const character = await getCharacter(characterName);
+  addCharacter(character);
+  selectUniverse(character);
+}
+
+//Función fetch
+async function getCharacter(name) {
+  const HASH = "b2547d237696e7f1b7fc87cd1ae69e1d";
+  const KEY = "ecaefda9e411f8f3f161f30be7a17df6";
+  const TS = new Date().getTime();
+  const API = `https://gateway.marvel.com/v1/public/characters?name=${name}&ts=1&apikey=`;
+  try {
+    const data = await fetch(`${API}${KEY}&hash=${HASH}`);
+    if (data.status === 404) {
+      showAlert("No se ha encontrado su personaje");
+      return;
     }
+    return await data.json();
+  } catch (err) {
+    showAlert("Conexión fallida con la base de datos");
   }
-  
-  async function Impresion() {
-    const datos = await getUser();
-    console.log(datos);
-  }
-  
-  function addCharacterUI(user) {
-    const userList = document.getElementById("character-container");
-    const element = document.createElement("div");
-    element.innerHTML = `
-      <strong>ID: </strong> ${user.data.results[0].id}
-      <strong>Name: </strong> ${user.data.results[0].name}
-      <img src="${user.data.results[0].thumbnail.path}.jpg" width="150px" height="150px">
+}
+
+//Función que muestra a los personajes
+function addCharacter(character) {
+  newAvengers.push(character);
+  const characterList = document.getElementById("character-container");
+  const element = document.createElement("div");
+  //element.classList.add("col-4");
+  element.innerHTML = `
+    <div>
+        <div>
+          <strong>Name: </strong> ${character.data.results[0].name}
+          <strong>Description: </strong> ${character.data.results[0].description}
+          <img src="${character.data.results[0].thumbnail.path}.jpg" width="150px" height="150px">
+
+        </div>
+    <div>
     `;
-    userList.appendChild(element);
+
+  characterList.appendChild(element);
+  if (characterList.childElementCount >= 7) {
+    document.getElementById("new-team").disabled = false;
+    disableElements(true);
+    showAlert("!El equipo de los nuevos vengadores esta completo!");
   }
-  
-  Impresion();
+}
+
+//Funcion que muestra las apariciones
+function selectUniverse(character) {
+    const characterList = document.getElementById("character-container");
+  const element = document.createElement("div");
+  if(select.value == "comics"){
+  element.innerHTML = `
+        <strong>Comics: </strong> ${character.data.results[0].comics.items[0].name}
+    `;
+  }else if(select.value == "events"){
+    element.innerHTML = `
+        <strong>Events: </strong> ${character.data.results[0].events.items[0].name}
+    `;
+  }else if(select.value == "series"){
+    element.innerHTML = `
+        <strong>Series: </strong> ${character.data.results[0].series.items[0].name}
+    `;
+  }else if(select.value == "stories"){
+    element.innerHTML = `
+        <strong>Stories: </strong> ${character.data.results[0].stories.items[0].name}
+    `;
+  }
+  characterList.appendChild(element);
+}

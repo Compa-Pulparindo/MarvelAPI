@@ -7,7 +7,22 @@
   </head>
 
   <body>
-    <button id="generateUser">Generar nuevo personaje</button>
+    <h3 id="alert"></h3>
+    <input
+      type="text"
+      id="character"
+      placeholder="Ingrese el nombre de su personaje" />
+
+    <button id="search">Generar nuevo personaje</button>
+
+    <select name="" id="universe">
+      <option value="elija">Elija</option>
+      <option value="comics">Comics</option>
+      <option value="events">Events</option>
+      <option value="series">Series</option>
+      <option value="stories">Stories</option>
+    </select>
+
     <div id="character-container"></div>
     <script src="./script.js"></script>
   </body>
