@@ -52,7 +52,6 @@ function cleanAlerts() {
   document.getElementById("alert").innerHTML = "";
 }
 
-//Funcion que
 async function addCharacter() {
   const characterName = document.getElementById("character").value;
   if (!characterName) {
